@@ -82,8 +82,13 @@
 		// Read the EXTINF number between #EXTINF: and the comma
 		NSRange commaRange = [remainingSegments rangeOfString:@","];
         NSRange valueRange = NSMakeRange(segmentRange.location + 8, commaRange.location - (segmentRange.location + 8));
-        if (commaRange.location == NSNotFound || valueRange.location > remainingSegments.length -1)
-            break;
+        if (commaRange.location == NSNotFound || valueRange.location > remainingSegments.length -1){
+            NSRange commaRange = [remainingSegments rangeOfString:@"\n"];
+            NSRange valueRange = NSMakeRange(segmentRange.location + 8, commaRange.location - (segmentRange.location + 8));
+            if (commaRange.location == NSNotFound || valueRange.location > remainingSegments.length -1){
+                break;
+            }
+        }
         
 		NSString *value = [remainingSegments substringWithRange:valueRange];
 		[params setValue:value forKey:M3U8_EXTINF_DURATION];
