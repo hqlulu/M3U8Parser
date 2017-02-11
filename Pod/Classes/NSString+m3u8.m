@@ -84,8 +84,8 @@
         NSRange valueRange = NSMakeRange(segmentRange.location + 8, commaRange.location - (segmentRange.location + 8));
         if (commaRange.location == NSNotFound || valueRange.location > remainingSegments.length -1){
             //#EXT-X-VERSION:2 example "#EXTINF:5"
-            NSRange commaRange = [remainingSegments rangeOfString:@"\n"];
-            NSRange valueRange = NSMakeRange(segmentRange.location + 8, commaRange.location - (segmentRange.location + 8));
+            commaRange = [remainingSegments rangeOfString:@"\n"];
+            valueRange = NSMakeRange(segmentRange.location + 8, commaRange.location - (segmentRange.location + 8));
             if (commaRange.location == NSNotFound || valueRange.location > remainingSegments.length -1){
                 break;
             }
